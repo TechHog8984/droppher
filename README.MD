@@ -1,4 +1,4 @@
-# droppher
+# Droppher
 
 An assistant for Hypixel dropper.
 Droppher provides live notifications, providing information you may forget about maps
