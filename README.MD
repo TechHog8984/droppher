@@ -17,6 +17,8 @@ Droppher provides live notifications, displaying information about maps (eventua
     - [x] Name
     - [ ] Direction to face & how to move
 - [ ] Badlion support
+- [ ] Language support
+    - [ ] English
 
 ## Known bugs
 
