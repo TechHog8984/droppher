@@ -64,7 +64,7 @@ async fn main() {
         .show().expect("Failed to display notification");
 
     let client_option = dialog::Question::new("Are you running Lunar (yes) or Badlion (no)?")
-        .title("Client")
+        .title("Droppher - Which Client?")
         .show()
         .unwrap_or_else(|_| {dialog::Choice::Cancel});
 
