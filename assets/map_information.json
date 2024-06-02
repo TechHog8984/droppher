@@ -40,7 +40,7 @@
     },
     "Sewer": {
         "difficulty": "easy",
-        "tip": "face South; move left"
+        "tip": "face South & move left"
     },
     "Space": {
         "difficulty": "easy"
@@ -115,6 +115,10 @@
         "difficulty": "medium"
     },
     
+    "Atlantis": {
+        "difficulty": "hard",
+        "tip": "face South"
+    },
     "Bird Cage": {
         "difficulty": "hard"
     },
