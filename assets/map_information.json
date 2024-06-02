@@ -1,186 +1,139 @@
 {
-    "maps": [
-        {
-            "name": "Balloons",
-            "difficulty": "easy"
-        },
-        {
-            "name": "BBQ",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Board Games",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Bridges",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Drainage",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Distance",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Distortion",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Kraken",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Lily",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Mainframe",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Microscope",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Mushroom",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Revolve",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Sewer",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Space",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Time",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Vintage",
-            "difficulty": "easy"
-        },
-        {
-            "name": "Warp",
-            "difficulty": "easy"
-        },
+    "Balloons": {
+        "difficulty": "easy"
+    },
+    "BBQ": {
+        "difficulty": "easy"
+    },
+    "Board Games": {
+        "difficulty": "easy"
+    },
+    "Bridges": {
+        "difficulty": "easy"
+    },
+    "Drainage": {
+        "difficulty": "easy"
+    },
+    "Distance": {
+        "difficulty": "easy"
+    },
+    "Distortion": {
+        "difficulty": "easy"
+    },
+    "Kraken": {
+        "difficulty": "easy"
+    },
+    "Lily": {
+        "difficulty": "easy"
+    },
+    "Mainframe": {
+        "difficulty": "easy"
+    },
+    "Microscope": {
+        "difficulty": "easy"
+    },
+    "Mushroom": {
+        "difficulty": "easy"
+    },
+    "Revolve": {
+        "difficulty": "easy"
+    },
+    "Sewer": {
+        "difficulty": "easy"
+    },
+    "Space": {
+        "difficulty": "easy"
+    },
+    "Time": {
+        "difficulty": "easy"
+    },
+    "Vintage": {
+        "difficulty": "easy"
+    },
+    "Warp": {
+        "difficulty": "easy"
+    },
+
+    "Butterflies": {
+        "difficulty": "medium"
+    },
+    "Cabin": {
+        "difficulty": "medium"
+    },
+    "City": {
+        "difficulty": "medium"
+    },
+    "Emoji": {
+        "difficulty": "medium"
+    },
+    "Geometry": {
+        "difficulty": "medium"
+    },
+    "Glacier": {
+        "difficulty": "medium"
+    },
+    "Launch Zone": {
+        "difficulty": "medium"
+    },
+    "Lavafall": {
+        "difficulty": "medium"
+    },
+    "Nightlife": {
+        "difficulty": "medium"
+    },
+    "Overgrown": {
+        "difficulty": "medium"
+    },
+    "Paradigm": {
+        "difficulty": "medium"
+    },
+    "Painted": {
+        "difficulty": "medium"
+    },
+    "Retro": {
+        "difficulty": "medium"
+    },
+    "Ravine": {
+        "difficulty": "medium"
+    },
+    "Stratocumulus": {
+        "difficulty": "medium"
+    },
+    "Sweets": {
+        "difficulty": "medium"
+    },
+    "Ufo": {
+        "difficulty": "medium"
+    },
+    "Western": {
+        "difficulty": "medium"
+    },
     
-        {
-            "name": "Butterflies",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Cabin",
-            "difficulty": "medium"
-        },
-        {
-            "name": "City",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Emoji",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Geometry",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Glacier",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Launch Zone",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Lavafall",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Nightlife",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Overgrown",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Paradigm",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Painted",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Retro",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Ravine",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Stratocumulus",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Sweets",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Ufo",
-            "difficulty": "medium"
-        },
-        {
-            "name": "Western",
-            "difficulty": "medium"
-        },
-        
-        {
-            "name": "Bird Cage",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Factory",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Fly Trap",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Frogspawn",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Gears",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Illusion",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Iris",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Ocean",
-            "difficulty": "hard"
-        },
-        {
-            "name": "Sandworm",
-            "difficulty": "hard"
-        }
-    ]
+    "Bird Cage": {
+        "difficulty": "hard"
+    },
+    "Factory": {
+        "difficulty": "hard"
+    },
+    "Fly Trap": {
+        "difficulty": "hard"
+    },
+    "Frogspawn": {
+        "difficulty": "hard"
+    },
+    "Gears": {
+        "difficulty": "hard"
+    },
+    "Illusion": {
+        "difficulty": "hard"
+    },
+    "Iris": {
+        "difficulty": "hard"
+    },
+    "Ocean": {
+        "difficulty": "hard"
+    },
+    "Sandworm": {
+        "difficulty": "hard"
+    }
 }
