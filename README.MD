@@ -6,6 +6,7 @@ Droppher provides live notifications, providing information you may forget about
 ## Todo
 
 - [x] Notification on match start & map completion
+- [x] Lunar support
 - [ ] Map information
 - [ ] Badlion support
 
