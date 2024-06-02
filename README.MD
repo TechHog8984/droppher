@@ -14,6 +14,7 @@ Droppher provides live notifications, displaying information about maps (eventua
 - [x] Notification on match start & map completion
 - [x] Lunar support
 - [ ] Map information
+    - [x] Name
     - [ ] Direction to face & how to move
 - [ ] Badlion support
 
