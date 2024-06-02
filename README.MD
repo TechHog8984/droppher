@@ -46,7 +46,7 @@ Run in terminal (sorry)
 
 ## Contributing
 
-If you want to contribute code or map information, submit a pull request!
+If you want to contribute [code](src/main.rs) or [map information](assets/map_information.json), submit a pull request!
 <br>
 If you want to contribute language support or if you need help with pull requests, reach out to me on discord @techhog
 
