@@ -64,7 +64,8 @@
         "difficulty": "medium"
     },
     "Cabin": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face East & move left -> back to center"
     },
     "City": {
         "difficulty": "medium",
@@ -94,10 +95,6 @@
     "Overgrown": {
         "difficulty": "medium"
     },
-    "OVNI": {
-        "difficulty": "medium",
-        "tip": "face NorthEast"
-    },
     "Paradigm": {
         "difficulty": "medium"
     },
@@ -120,7 +117,8 @@
         "difficulty": "medium"
     },
     "Ufo": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face NorthEast"
     },
     "Western": {
         "difficulty": "medium"
