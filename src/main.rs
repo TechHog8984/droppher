@@ -30,7 +30,7 @@ impl Actor for LineHandler {}
 #[async_trait]
 impl Notifiable<String> for LineHandler {
     async fn notify(&mut self, input: String, _context: &Context<Self>) {
-        if /*input.eq("¡SALTA!") || */ input.starts_with("¡Terminaste el Mapa ") {
+        if input.starts_with("¡Terminaste el Mapa ") {
             if self.selected_maps.len() > 0 {
                 handle_map(self.selected_maps.remove(0), &self.map_information).await;
             }
@@ -55,7 +55,6 @@ impl Notifiable<String> for LineHandler {
                 .show().expect("Failed to show notification");
 
             sleep(self.game_start_first_map_delay);
-
             handle_map(self.selected_maps.remove(0), &self.map_information).await;
 
             return;
