@@ -72,7 +72,7 @@
     },
     "Emoji": {
         "difficulty": "medium",
-        "tip": "face SouthWest & get around first emoji -> behind second"
+        "tip": "face SouthEast & get around first emoji -> behind others"
     },
     "Geometry": {
         "difficulty": "medium"
@@ -94,11 +94,16 @@
     "Overgrown": {
         "difficulty": "medium"
     },
+    "OVNI": {
+        "difficulty": "medium",
+        "tip": "face NorthEast"
+    },
     "Paradigm": {
         "difficulty": "medium"
     },
     "Painted": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face diagonal"
     },
     "Retro": {
         "difficulty": "medium",
