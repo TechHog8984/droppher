@@ -107,7 +107,7 @@ async fn main() {
     let mut handler = LineHandler{
         selected_maps: Vec::new(),
 
-        selected_maps_pattern: Regex::new(r"Mapas Seleccionados: ([\w, ]+)").unwrap(),
+        selected_maps_pattern: Regex::new(r"Mapas Seleccionados: ([\w', ]+)").unwrap(),
     }.spawn();
 
     loop {
