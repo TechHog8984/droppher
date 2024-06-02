@@ -1,8 +1,8 @@
 # Droppher
 
-An assistant for Hypixel dropper.
+An assistant for Hypixel dropper
 <br>
-Droppher provides live notifications, displaying information about maps (eventually)
+Droppher provides live notifications, displaying information about maps (eventually).
 
 ![](assets/image1.png)
 ![](assets/image2.png)
