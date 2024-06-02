@@ -120,7 +120,7 @@ async fn main() {
         last = buf.lines().last().unwrap().to_string();
 
         if !last.eq(&old_last) && last.split("[CHAT] ").count() == 2 {
-            // save unmodified line to the old check still is valid
+            // save unmodified line so the old check still is valid
             let old_last = last.clone();
 
             last = color_code_pattern.replace_all(last.as_str(), "").to_string();
