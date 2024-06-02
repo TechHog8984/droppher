@@ -26,6 +26,12 @@ The following platforms are supported:
 - [Windows](https://github.com/TechHog8984/droppher/releases/download/v0.1.1/droppher.exe) (NOT TESTED PLEASE TEST THIS AND LMK HOW IT GOES)
 - [Linux](https://github.com/TechHog8984/droppher/releases/download/v0.1.1/droppher)
 
+## Building
+
+```sh
+cargo build --release
+```
+
 ## Usage
 
 Run in terminal (sorry)
