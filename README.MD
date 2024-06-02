@@ -43,3 +43,13 @@ cargo build --release
 ## Usage
 
 Run in terminal (sorry)
+
+## Contributing
+
+If you want to contribute code, submit a pull request!
+<br>
+If you want to contribute language support or map information, reach out to me on discord @techhog
+
+## Bugs
+
+Find a bug? [Report an issue](https://github.com/TechHog8984/droppher/issues/new/choose).
