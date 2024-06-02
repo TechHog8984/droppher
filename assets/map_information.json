@@ -55,6 +55,10 @@
         "difficulty": "easy"
     },
 
+    "Beanstalk": {
+        "difficulty": "medium",
+        "tip": "face East & move left a little"  
+    },
     "Butterflies": {
         "difficulty": "medium"
     },
