@@ -225,8 +225,8 @@ fn fail(fail_type: FailType) {
 
 #[cfg(not(windows))]
 fn get_lunar_client_directory_path() -> Option<String> {
-    match env::var("USER") {
-        Ok(path) => Some(format!("/home/{}/.lunarclient/logs/game", path)),
+    match env::var("HOME") {
+        Ok(path) => Some(format!("{}/.lunarclient/logs/game", path)),
         Err(_) => None
     }
 }
