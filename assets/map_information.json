@@ -9,7 +9,8 @@
         "difficulty": "easy"
     },
     "Bridges": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "tip": "face East & move left"
     },
     "Drainage": {
         "difficulty": "easy"
@@ -40,7 +41,7 @@
     },
     "Sewer": {
         "difficulty": "easy",
-        "tip": "face South & move left"
+        "tip": "face East & move left"
     },
     "Space": {
         "difficulty": "easy"
@@ -66,10 +67,12 @@
         "difficulty": "medium"
     },
     "City": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face West"
     },
     "Emoji": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face SouthWest & get around first emoji -> behind second"
     },
     "Geometry": {
         "difficulty": "medium"
@@ -81,7 +84,8 @@
         "difficulty": "medium"
     },
     "Lavafall": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face East & move left"
     },
     "Nightlife": {
         "difficulty": "medium",
@@ -97,13 +101,15 @@
         "difficulty": "medium"
     },
     "Retro": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face North"
     },
     "Ravine": {
         "difficulty": "medium"
     },
     "Stratocumulus": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face West"
     },
     "Sweets": {
         "difficulty": "medium"
@@ -123,7 +129,8 @@
         "difficulty": "hard"
     },
     "Factory": {
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "tip": "face East & hug inner side of hole"
     },
     "Fly Trap": {
         "difficulty": "hard"
@@ -135,7 +142,8 @@
         "difficulty": "hard"
     },
     "Illusion": {
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "tip": "face any cardinal direction"
     },
     "Iris": {
         "difficulty": "hard"
