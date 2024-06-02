@@ -39,7 +39,8 @@
         "difficulty": "easy"
     },
     "Sewer": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "tip": "face South; move left"
     },
     "Space": {
         "difficulty": "easy"
@@ -79,7 +80,8 @@
         "difficulty": "medium"
     },
     "Nightlife": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face East & move left"
     },
     "Overgrown": {
         "difficulty": "medium"
