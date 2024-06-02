@@ -395,6 +395,7 @@ dependencies = [
  "notify-rust",
  "regex",
  "tokio",
+ "win_dialog",
 ]
 
 [[package]]
@@ -1351,6 +1352,16 @@ name = "wasi"
 version = "0.11.0+wasi-snapshot-preview1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9c8d87e72b64a3b4db28d11ce29237c246188f4f51057d65a7eab63b7987e423"
+
+[[package]]
+name = "win_dialog"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6cc00c4812ba079ef5108ebcb875d9387ee8e52a8b7fef6436630533622f6dde"
+dependencies = [
+ "thiserror",
+ "windows",
+]
 
 [[package]]
 name = "winapi"

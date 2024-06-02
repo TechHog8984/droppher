@@ -9,3 +9,6 @@ dialog = "0.3"
 messages = "0.3.1"
 tokio = { version = "1", features = ["full"] }
 regex = "1.10.4"
+
+[target.'cfg(windows)'.dependencies]
+win_dialog = "1.0.0"

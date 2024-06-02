@@ -13,11 +13,13 @@ Droppher provides live notifications, displaying information about maps (eventua
 
 - [x] Notification on match start & map completion
 - [x] Lunar support
+- [x] Windows support
+- [ ] Badlion support
+    - [x] Badlion for Windows
+    - [ ] Badlion for Linux
 - [ ] Map information
     - [x] Name
     - [ ] Direction to face & how to move
-- [ ] Windows support
-- [ ] Badlion support
 - [ ] Language support
     - [ ] English
 

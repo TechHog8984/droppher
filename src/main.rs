@@ -5,6 +5,9 @@ use messages::prelude::*;
 use notify_rust::Notification;
 use dialog::DialogBox;
 
+#[cfg(windows)]
+use win_dialog::{style, Icon, WinDialog};
+
 enum FailType {
     Cancel,
     FailedToFindLogDirectory
@@ -56,6 +59,30 @@ async fn handle_map(map: String) {
         .show().expect("Failed to show notification");
 }
 
+#[cfg(windows)]
+fn windows_client_dialog(log_path_option: &mut Option<String>) {
+    let client_option = WinDialog::new("Are you running Lunar (yes) or Badlion (no)?")
+        // TODO: header does not work (in vm testing at least)
+        .with_header("Droppher - Which Client?")
+        .with_style(style::YesNoCancel)
+        .with_icon(Icon::Information)
+        .show()
+        .unwrap_or_else(|_| {style::YesNoCancelResponse::Cancel});
+
+    match client_option {
+        style::YesNoCancelResponse::Yes => {
+            *log_path_option = get_lunar_client_log_path();
+        },
+        style::YesNoCancelResponse::No => {
+            *log_path_option = get_badlion_log_path();
+        },
+        style::YesNoCancelResponse::Cancel => {
+            fail(FailType::Cancel);
+            exit(0);
+        }
+    };
+}
+
 #[tokio::main]
 async fn main() {
     Notification::new()
@@ -63,25 +90,30 @@ async fn main() {
         .body("Droppher has started!")
         .show().expect("Failed to display notification");
 
-    let client_option = dialog::Question::new("Are you running Lunar (yes) or Badlion (no)?")
-        .title("Droppher - Which Client?")
-        .show()
-        .unwrap_or_else(|_| {dialog::Choice::Cancel});
+    let mut log_path_option: Option<String> = None;
 
-    let log_path_option: Option<String>;
+    if cfg!(windows) {
+        #[cfg(windows)]
+        windows_client_dialog(&mut log_path_option);
+    } else {
+        let client_option = dialog::Question::new("Are you running Lunar (yes) or Badlion (no)?")
+            .title("Droppher - Which Client?")
+            .show()
+            .unwrap_or_else(|_| {dialog::Choice::Cancel});
 
-    match client_option {
-        dialog::Choice::Yes => {
-            log_path_option = get_lunar_client_log_path();
-        },
-        dialog::Choice::No => {
-            log_path_option = get_badlion_log_path();
-        },
-        dialog::Choice::Cancel => {
-            fail(FailType::Cancel);
-            exit(0);
-        }
-    };
+        match client_option {
+            dialog::Choice::Yes => {
+                log_path_option = get_lunar_client_log_path();
+            },
+            dialog::Choice::No => {
+                log_path_option = get_badlion_log_path();
+            },
+            dialog::Choice::Cancel => {
+                fail(FailType::Cancel);
+                exit(0);
+            }
+        };
+    }
 
     let log_path = log_path_option.unwrap_or_else(|| {
         fail(FailType::FailedToFindLogDirectory);
@@ -157,12 +189,26 @@ fn fail(fail_type: FailType) {
         .show().expect("Failed to display notification");
 }
 
-fn get_lunar_client_log_path() -> Option<String> {
-    let user_path_result = env::var("USER");
+#[cfg(not(windows))]
+fn get_lunar_client_directory_path() -> Option<String> {
+    match env::var("USER") {
+        Ok(path) => Some(format!("/home/{}/.lunarclient/logs/game", path)),
+        Err(_) => None
+    }
+}
 
-    let directory_path = match user_path_result {
-        Ok(path) => format!("/home/{}/.lunarclient/logs/game", path),
-        Err(_) => return None
+#[cfg(windows)]
+fn get_lunar_client_directory_path() -> Option<String> {
+    match env::var("HOMEPATH") {
+        Ok(homepath) => Some(format!("C:{}\\.lunarclient\\logs\\game", homepath)),
+        Err(_) => None
+    }
+}
+
+fn get_lunar_client_log_path() -> Option<String> {
+    let directory_path = match get_lunar_client_directory_path() {
+        Some(path) => path,
+        None => return None
     };
 
     let entries_result = read_dir(directory_path);
@@ -206,8 +252,16 @@ fn get_lunar_client_log_path() -> Option<String> {
     most_recently_modified_path
 }
 
+#[cfg(not(windows))]
 fn get_badlion_log_path() -> Option<String> {
-
-    // TODO: Badlion support
+    // TODO: non-windows badlion
     None
+}
+
+#[cfg(windows)]
+fn get_badlion_log_path() -> Option<String> {
+    match env::var("APPDATA") {
+        Ok(appdata) => Some(format!("{}\\.minecraft\\logs\\blclient\\minecraft\\latest.log", appdata)),
+        Err(_) => return None
+    }
 }
