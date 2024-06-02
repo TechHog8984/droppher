@@ -31,8 +31,8 @@ Droppher is known to skip messages
 
 The following platforms are supported:
 <br>
-- [Windows](https://github.com/TechHog8984/droppher/releases/download/v0.2.1/droppher.exe)
-- [Linux](https://github.com/TechHog8984/droppher/releases/download/v0.2.1/droppher)
+- [Windows](https://github.com/TechHog8984/droppher/releases/download/v0.3.0/droppher.exe)
+- [Linux](https://github.com/TechHog8984/droppher/releases/download/v0.3.0/droppher)
 
 ## Building
 
@@ -46,9 +46,9 @@ Run in terminal (sorry)
 
 ## Contributing
 
-If you want to contribute code, submit a pull request!
+If you want to contribute code or map information, submit a pull request!
 <br>
-If you want to contribute language support or map information, reach out to me on discord @techhog
+If you want to contribute language support or if you need help with pull requests, reach out to me on discord @techhog
 
 ## Bugs
 

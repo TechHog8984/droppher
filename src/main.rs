@@ -4,19 +4,24 @@ use regex::Regex;
 use messages::prelude::*;
 use notify_rust::Notification;
 use dialog::DialogBox;
+use json::{self, JsonValue};
+use reqwest;
 
 #[cfg(windows)]
 use win_dialog::{style, Icon, WinDialog};
 
 enum FailType {
     Cancel,
-    FailedToFindLogDirectory
+    FailedToFindLogDirectory,
+    FailedToFetchMapInformation
 }
 
 struct LineHandler {
     selected_maps: Vec<String>,
+    game_start_first_map_delay: Duration,
 
-    selected_maps_pattern: Regex
+    selected_maps_pattern: Regex,
+    map_information: JsonValue
 }
 
 #[async_trait]
@@ -25,9 +30,9 @@ impl Actor for LineHandler {}
 #[async_trait]
 impl Notifiable<String> for LineHandler {
     async fn notify(&mut self, input: String, _context: &Context<Self>) {
-        if input.eq("¡SALTA!") || input.starts_with("¡Terminaste el Mapa ") {
+        if /*input.eq("¡SALTA!") || */ input.starts_with("¡Terminaste el Mapa ") {
             if self.selected_maps.len() > 0 {
-                handle_map(self.selected_maps.remove(0)).await;
+                handle_map(self.selected_maps.remove(0), &self.map_information).await;
             }
             return;
         }
@@ -49,15 +54,26 @@ impl Notifiable<String> for LineHandler {
                 .timeout(5000)
                 .show().expect("Failed to show notification");
 
+            sleep(self.game_start_first_map_delay);
+
+            handle_map(self.selected_maps.remove(0), &self.map_information).await;
+
             return;
         };
     }
 }
 
-async fn handle_map(map: String) {
+async fn handle_map(map: String, map_information: &JsonValue) {
+    let map_info = &map_information[map.as_str()];
+
+    let map_info_str = if *map_info == JsonValue::Null {"".to_string()} else {
+        format!("{} | {}", map_info["difficulty"].as_str().unwrap(), map_info["tip"].as_str().or(Some("no tip")).unwrap().to_string())
+    };
+
     Notification::new()
         .summary("Droppher")
-        .body(format!("You are now on {}", map).as_str())
+        .body(format!("You are now on {}\n{}", map, map_info_str).as_str())
+        .timeout(5000)
         .show().expect("Failed to show notification");
 }
 
@@ -138,10 +154,26 @@ async fn main() {
     let player_chat1_pattern = Regex::new(r"^[\w\d_]+: ").unwrap();
     let player_chat2_pattern = Regex::new(r"^\[[\w+]+\] [\w\d_]+: ").unwrap();
 
+    let json_resp = reqwest::get("https://raw.githubusercontent.com/TechHog8984/droppher/master/assets/map_information.json")
+        .await;
+
+    if json_resp.is_err() {
+        fail(FailType::FailedToFetchMapInformation);
+        exit(0);
+    }
+
+    let json_text = json_resp.unwrap().text().await;
+    if json_text.is_err() {
+        fail(FailType::FailedToFetchMapInformation);
+        exit(0);
+    }
+
     let mut handler = LineHandler{
         selected_maps: Vec::new(),
+        game_start_first_map_delay: Duration::from_secs(3),
 
         selected_maps_pattern: Regex::new(r"Mapas Seleccionados: ([\w', ]+)").unwrap(),
+        map_information: json::parse(json_text.unwrap().as_str()).unwrap()
     }.spawn();
 
     loop {
@@ -186,7 +218,8 @@ fn fail(fail_type: FailType) {
         .summary("Droppher")
         .body(match fail_type { 
             FailType::Cancel => "Canceled dialog",
-            FailType::FailedToFindLogDirectory => "Failed to find log directory"
+            FailType::FailedToFindLogDirectory => "Failed to find log directory",
+            FailType::FailedToFetchMapInformation => "Failed to fetch map information"
         })
         .show().expect("Failed to display notification");
 }
