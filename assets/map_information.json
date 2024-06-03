@@ -49,6 +49,9 @@
     "Space": {
         "difficulty": "easy"
     },
+    "Tangle": {
+        "difficulty": "easy"
+    },
     "Time": {
         "difficulty": "easy"
     },
@@ -77,6 +80,9 @@
         "difficulty": "medium",
         "tip": "face East & move left -> back to center"
     },
+    "Castle": {
+        "difficulty": "medium"
+    },
     "City": {
         "difficulty": "medium",
         "tip": "face West"
@@ -97,6 +103,9 @@
     "Lavafall": {
         "difficulty": "medium",
         "tip": "face East & move left"
+    },
+    "Maelstrom": {
+        "difficulty": "medium"
     },
     "Nightlife": {
         "difficulty": "medium",
@@ -155,6 +164,9 @@
         "difficulty": "hard"
     },
     "Gears": {
+        "difficulty": "hard"
+    },
+    "Hell Gate": {
         "difficulty": "hard"
     },
     "Illusion": {
