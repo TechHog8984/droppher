@@ -46,7 +46,7 @@ impl Notifiable<String> for LineHandler {
     async fn notify(&mut self, input: String, _context: &Context<Self>) {
         if input.starts_with(self.map_finish_text) {
             if self.selected_maps.len() > 0 {
-                handle_map(self.selected_maps.remove(0), &self.map_information).await;
+                handle_map(self.selected_maps.remove(0), &self.map_information);
             }
             return;
         }
@@ -69,14 +69,14 @@ impl Notifiable<String> for LineHandler {
                 .show().expect("Failed to show notification");
 
             sleep(self.game_start_first_map_delay);
-            handle_map(self.selected_maps.remove(0), &self.map_information).await;
+            handle_map(self.selected_maps.remove(0), &self.map_information);
 
             return;
         };
     }
 }
 
-async fn handle_map(map: String, map_information: &JsonValue) {
+fn handle_map(map: String, map_information: &JsonValue) {
     let map_info = &map_information[map.as_str()];
 
     let map_info_str = if *map_info == JsonValue::Null {"".to_string()} else {
