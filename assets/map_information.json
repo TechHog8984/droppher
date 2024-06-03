@@ -21,6 +21,9 @@
     "Distortion": {
         "difficulty": "easy"
     },
+    "Kingdom Mines": {
+        "difficulty": "easy"
+    },
     "Kraken": {
         "difficulty": "easy"
     },
@@ -55,10 +58,13 @@
     "Warp": {
         "difficulty": "easy"
     },
+    "Well": {
+        "difficulty": "easy"
+    },
 
     "Beanstalk": {
         "difficulty": "medium",
-        "tip": "face East & move left a little"  
+        "tip": "face East & move left"  
     },
     "Butterflies": {
         "difficulty": "medium"
@@ -120,6 +126,9 @@
         "difficulty": "medium",
         "tip": "face NorthEast"
     },
+    "Warportal": {
+        "difficulty": "medium"
+    },
     "Western": {
         "difficulty": "medium"
     },
@@ -156,5 +165,9 @@
     },
     "Sandworm": {
         "difficulty": "hard"
+    },
+    "Vortex": {
+        "difficulty": "hard",
+        "tip": "face SouthEast -> back to center"
     }
 }
