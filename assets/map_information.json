@@ -70,7 +70,8 @@
         "tip": "face East & move left"  
     },
     "Butterflies": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "tip": "face South"
     },
     "Cabin": {
         "difficulty": "medium",
