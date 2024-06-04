@@ -3,7 +3,8 @@
         "difficulty": "easy"
     },
     "BBQ": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "portal_skip": true
     },
     "Board Games": {
         "difficulty": "easy"
@@ -59,7 +60,9 @@
         "difficulty": "easy"
     },
     "Vintage": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "portal_skip": true,
+        "portal_skip_tip": "face South"
     },
     "Warp": {
         "difficulty": "easy"

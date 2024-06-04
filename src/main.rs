@@ -80,7 +80,20 @@ fn handle_map(map: String, map_information: &JsonValue) {
     let map_info = &map_information[map.as_str()];
 
     let map_info_str = if *map_info == JsonValue::Null {"".to_string()} else {
-        format!("{}{} | {}", map_info["difficulty"].as_str().unwrap(), if map_info["portal_skip"] == JsonValue::Boolean(true) {" | SKIP"} else {""}, map_info["tip"].as_str().or(Some("no tip")).unwrap().to_string())
+        format!("{} | {}{}{}",
+            map_info["difficulty"].as_str().unwrap(),
+            map_info["tip"].as_str().or(Some("no tip")).unwrap().to_string(),
+            if map_info["portal_skip"] == JsonValue::Boolean(true) {
+                " | SKIP"
+            } else {
+                ""
+            },
+            if map_info["portal_skip_tip"] != JsonValue::Null {
+                format!(" ({})", map_info["portal_skip_tip"].as_str().unwrap())
+            } else {
+                "".to_string()
+            }
+        )
     };
 
     Notification::new()

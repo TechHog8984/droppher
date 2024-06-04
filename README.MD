@@ -31,8 +31,8 @@ None (yet) :D
 
 The following platforms are supported:
 <br>
-- [Windows](https://github.com/TechHog8984/droppher/releases/download/v1.0.0/droppher.exe)
-- [Linux](https://github.com/TechHog8984/droppher/releases/download/v1.0.0/droppher)
+- [Windows](https://github.com/TechHog8984/droppher/releases/download/v1.1.0/droppher.exe)
+- [Linux](https://github.com/TechHog8984/droppher/releases/download/v1.1.0/droppher)
 
 ## Building
 
