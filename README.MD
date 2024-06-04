@@ -8,6 +8,9 @@ Droppher provides live notifications displaying information about maps.
 ![](assets/image2.png)
 ![](assets/image3.png)
 ![](assets/image4.png)
+<br>
+![](assets/image5.png)
+![](assets/image6.png)
 
 ## Todo
 
