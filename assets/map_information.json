@@ -4,7 +4,8 @@
     },
     "BBQ": {
         "difficulty": "easy",
-        "portal_skip": true
+        "portal_skip": true,
+        "portal_skip_tip": "face South"
     },
     "Board Games": {
         "difficulty": "easy"
