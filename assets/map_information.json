@@ -67,7 +67,8 @@
         "portal_skip_tip": "face South"
     },
     "Warp": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "portal_skip": true
     },
     "Well": {
         "difficulty": "easy",
