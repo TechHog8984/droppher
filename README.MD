@@ -25,14 +25,14 @@ Droppher provides live notifications displaying information about maps.
 
 ## Known bugs
 
-Droppher is known to skip messages
+None (yet) :D
 
 ## Download
 
 The following platforms are supported:
 <br>
-- [Windows](https://github.com/TechHog8984/droppher/releases/download/v0.4.0/droppher.exe)
-- [Linux](https://github.com/TechHog8984/droppher/releases/download/v0.4.0/droppher)
+- [Windows](https://github.com/TechHog8984/droppher/releases/download/v1.0.0/droppher.exe)
+- [Linux](https://github.com/TechHog8984/droppher/releases/download/v1.0.0/droppher)
 
 ## Building
 

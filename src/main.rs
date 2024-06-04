@@ -80,7 +80,7 @@ fn handle_map(map: String, map_information: &JsonValue) {
     let map_info = &map_information[map.as_str()];
 
     let map_info_str = if *map_info == JsonValue::Null {"".to_string()} else {
-        format!("{} | {}", map_info["difficulty"].as_str().unwrap(), map_info["tip"].as_str().or(Some("no tip")).unwrap().to_string())
+        format!("{}{} | {}", map_info["difficulty"].as_str().unwrap(), if map_info["portal_skip"] == JsonValue::Boolean(true) {" | SKIP"} else {""}, map_info["tip"].as_str().or(Some("no tip")).unwrap().to_string())
     };
 
     Notification::new()
@@ -166,12 +166,6 @@ async fn main() {
         .body(format!("Running with log: {}", log_path).as_str())
         .show().expect("Failed to display notification");
 
-    let mut log_file: File;
-    let mut buf: String = String::new();
-    let mut last: String = String::new();
-
-    let delay = Duration::from_millis(100);
-
     let color_code_pattern = Regex::new("§.").unwrap();
     let chat_pattern = Regex::new(r"\[CHAT\] (.+)").unwrap();
     let player_chat1_pattern = Regex::new(r"^[\w\d_]+: ").unwrap();
@@ -206,14 +200,30 @@ async fn main() {
         map_information: json::parse(json_text.unwrap().as_str()).unwrap()
     }.spawn();
 
+    let mut log_file: File;
+    let mut buf: String = String::new();
+    let mut last: String = String::new();
+
+    log_file = File::open(&log_path).expect("Failed to open log file");
+    log_file.read_to_string(&mut buf).expect("Failed to read log file");
+    
+    let mut line_index = buf.lines().count() - 1;
+
     loop {
         let old_last = last;
-        log_file = File::open(log_path.clone()).unwrap();
+        log_file = File::open(&log_path).unwrap();
 
         buf.clear();
         log_file.read_to_string(&mut buf).expect("Failed to read log file");
     
-        last = buf.lines().last().unwrap().to_string();
+        let lines = buf.lines().collect::<Vec<_>>();
+        if lines.len() <= line_index {
+            last = old_last;
+            continue;
+        }
+
+        last = lines[line_index].to_string();
+        line_index += 1;
 
         if !last.eq(&old_last) && last.split("[CHAT] ").count() == 2 {
             // save unmodified line so the old check still is valid
@@ -238,8 +248,6 @@ async fn main() {
 
             last = old_last;
         }
-
-        sleep(delay);
     }
 }
 

@@ -65,7 +65,8 @@
         "difficulty": "easy"
     },
     "Well": {
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "portal_skip": true
     },
 
     "Beanstalk": {
@@ -85,7 +86,8 @@
     },
     "City": {
         "difficulty": "medium",
-        "tip": "face West"
+        "tip": "face West",
+        "portal_skip": true
     },
     "Emoji": {
         "difficulty": "medium",
@@ -140,7 +142,8 @@
         "tip": "face NorthEast"
     },
     "Warportal": {
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "portal_skip": true
     },
     "Western": {
         "difficulty": "medium"
@@ -148,7 +151,7 @@
     
     "Atlantis": {
         "difficulty": "hard",
-        "tip": "face South"
+        "tip": "face South -> back to center"
     },
     "Bird Cage": {
         "difficulty": "hard"
