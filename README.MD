@@ -44,6 +44,22 @@ cargo build --release
 
 Run in terminal (sorry)
 
+## What things mean
+
+If a map is in [the list](assets/map_information.json), you will see information about that map in its notification.
+<br>
+1. The first piece of information is <ins>difficulty</ins> (<span style="color:#80ed99">easy</span>, <span style="color:#fcbf49">medium</span>, or <span style="color:#ef233c">hard</span>).
+<br>
+2. The second piece of information is either a <ins>tip on how to complete the map</ins> or "no tip". This usually includes a direction to face.
+<br>
+3. The third piece of information is whether a map has a <ins>[portal skip](#portal-skip)</ins>. This will be empty if there is no known portal skip.
+<br>
+4. The fourth piece of information is <ins>a tip for the portal skip</ins>. This can also be empty and is similar to the other tip.
+
+## Portal skip
+
+Maps with portal skips are maps that allow the player to ignore the water and head straight into the portal. This usually is difficult, especially on maps like <ins>Vintage</ins>, but it can be easy and it depends entirely on the map.
+
 ## Contributing
 
 If you want to contribute [code](src/main.rs) or [map information](assets/map_information.json), submit a pull request!
