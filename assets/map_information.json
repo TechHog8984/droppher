@@ -45,7 +45,8 @@
     },
     "Sewer": {
         "difficulty": "easy",
-        "tip": "face East & move left"
+        "tip": "face East & move left",
+        "portal_skip": true
     },
     "Space": {
         "difficulty": "easy"
