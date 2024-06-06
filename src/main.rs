@@ -337,6 +337,8 @@ impl eframe::App for DroppherApp {
                         let mut custom_file_changed = false;
 
                         #[cfg(not(windows))]
+                        ui.label("or");
+                        #[cfg(not(windows))]
                         if ui.button("Select Log Directory").clicked() {
                             custom_file_changed = true;
                             match tinyfiledialogs::select_folder_dialog("Select Log Directory", "") {
