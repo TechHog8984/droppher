@@ -39,8 +39,14 @@ The following platforms are supported:
 
 ## Building
 
+Windows: (this gets rid of command prompt)
 ```sh
-cargo build --release
+$ cargo rustc --release -- -Clink-args="-Wl,--subsystem,windows"
+```
+
+Other platforms:
+```sh
+$ cargo build --release
 ```
 
 ## What things mean
