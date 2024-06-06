@@ -5,7 +5,7 @@ An assistant for Hypixel dropper
 Droppher provides live notifications displaying information about maps.
 
 ![](assets/image1.png)
-*On Windows the UI is not transparent :(
+*On Windows the UI is not transparent & there is no Select Log Directory option :(
 <br>
 ![](assets/image2.png)
 <br>
