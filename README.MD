@@ -49,6 +49,10 @@ Other platforms:
 $ cargo build --release
 ```
 
+## Usage
+
+When using a custom log directory (linux only at the moment), choose the folder with the log in it. For example, .lunarclient/logs/game or .minecraft/logs/blclient/minecraft
+
 ## What things mean
 
 If a map is in [the list](assets/map_information.json), you will see information about that map in its notification.

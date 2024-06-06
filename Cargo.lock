@@ -1038,7 +1038,7 @@ checksum = "75b325c5dbd37f80359721ad39aca5a29fb04c89279657cffdda8736d0c0b9d2"
 
 [[package]]
 name = "droppher"
-version = "2.0.0"
+version = "2.2.0"
 dependencies = [
  "dialog",
  "eframe",
@@ -1047,6 +1047,7 @@ dependencies = [
  "notify-rust",
  "regex",
  "reqwest",
+ "tinyfiledialogs",
  "tokio",
  "win_dialog",
 ]
@@ -3438,6 +3439,16 @@ dependencies = [
  "arrayref",
  "bytemuck",
  "strict-num",
+]
+
+[[package]]
+name = "tinyfiledialogs"
+version = "3.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e25fa0bc43a6566e2cc6d7ac96df3fa5a57beba34445bead1b368ba8fe9ca568"
+dependencies = [
+ "cc",
+ "libc",
 ]
 
 [[package]]

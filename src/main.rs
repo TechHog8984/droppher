@@ -10,6 +10,9 @@ use regex::Regex;
 use notify_rust::Notification;
 use json::{self, JsonValue};
 
+#[cfg(not(windows))]
+use tinyfiledialogs;
+
 #[tokio::main]
 async fn main() -> Result<(), eframe::Error> {
     let options = eframe::NativeOptions {
@@ -97,10 +100,13 @@ enum SupportedLanguage {
 }
 
 #[derive(PartialEq)]
+#[derive(Clone)]
 enum SupportedClient {
     None,
     Lunar,
-    Badlion
+    Badlion,
+    #[cfg(not(windows))]
+    Custom(String)
 }
 
 // struct BedwarsPlayerInfo {
@@ -193,11 +199,14 @@ impl DroppherApp {
                             self.selected_maps.push(map.to_string());
                         };
             
-                        Notification::new()
+                        if Notification::new()
                             .summary("Droppher")
                             .body(format!("Game started! Maps: {:?}", self.selected_maps.clone()).as_str())
                             .timeout(5000)
-                            .show().expect("Failed to show notification");
+                            .show().is_err()
+                        {
+                            println!("failed to display notification");
+                        }
             
                         // sleep(self.game_start_first_map_delay);
                         handle_map(self.selected_maps.remove(0), &self.map_information);
@@ -226,25 +235,34 @@ impl eframe::App for DroppherApp {
                 let new_state = !self.enabled;
                 if new_state {
                     if self.log_path.is_empty() {
-                        Notification::new()
+                        if Notification::new()
                             .summary("Droppher")
                             .body("Select a client in Global before starting")
-                            .show().expect("Failed to display notification");
+                            .show().is_err()
+                        {
+                            println!("failed to display notification");
+                        }
                         return;
                     };
 
                     self.last_line_index = 0;
                     self.last_line.clear();
 
-                    Notification::new()
+                    if Notification::new()
                         .summary("Droppher")
                         .body("Droppher has started!")
-                        .show().expect("Failed to display notification");
+                        .show().is_err()
+                    {
+                        println!("failed to display notification");
+                    }
                 } else {
-                    Notification::new()
+                    if Notification::new()
                         .summary("Droppher")
                         .body("Droppher has stopped!")
-                        .show().expect("Failed to display notification");
+                        .show().is_err()
+                    {
+                        println!("failed to display notification");
+                    }
                 }
                 self.enabled = new_state;
             };
@@ -310,28 +328,52 @@ impl eframe::App for DroppherApp {
 
                     ui.label("Client:");
                     ui.horizontal(|ui| {
-                        if ui.radio_value(&mut self.client, SupportedClient::Lunar, "Lunar").changed() ||
-                            ui.radio_value(&mut self.client, SupportedClient::Badlion, "Badlion").changed()
-                        {
-                            let path_option = match self.client {
-                                SupportedClient::Lunar => get_lunar_client_log_path(),
-                                SupportedClient::Badlion => get_badlion_log_path(),
-                                SupportedClient::None => None
+                        let old_client = self.client.clone();
+
+                        let lunar_radio = ui.radio_value(&mut self.client, SupportedClient::Lunar, "Lunar");
+                        let badlion_radio = ui.radio_value(&mut self.client, SupportedClient::Badlion, "Badlion");
+
+                        #[allow(unused_mut)]
+                        let mut custom_file_changed = false;
+
+                        #[cfg(not(windows))]
+                        if ui.button("Select Log Directory").clicked() {
+                            custom_file_changed = true;
+                            match tinyfiledialogs::select_folder_dialog("Select Log Directory", "") {
+                                Some(result) => {self.client = SupportedClient::Custom(result)},
+                                None => {self.client = SupportedClient::Custom("".to_string())}
+                            };
+                        };
+
+                        if lunar_radio.changed() || badlion_radio.changed() || custom_file_changed {
+                            let path_option = match &self.client {
+                                SupportedClient::None => None,
+                                SupportedClient::Lunar => verify_path(&get_lunar_client_log_path()),
+                                SupportedClient::Badlion => verify_path(&get_badlion_log_path()),
+                                #[cfg(not(windows))]
+                                SupportedClient::Custom(path) => verify_path(&get_latest_file_path(path.to_string()))
                             };
 
                             match path_option {
                                 Some(path) => {self.log_path = path;},
                                 None => {
-                                    Notification::new()
+                                    self.client = old_client;
+
+                                    if Notification::new()
                                         .summary("Droppher")
                                         .body("Failed to find log path")
-                                        .show().expect("Failed to display notification");
+                                        .show().is_err()
+                                    {
+                                        println!("failed to display notification");
+                                    }
                                 }
                             };
-                        }
+                        };
                     });
+
+                    ui.label(format!("Log path: {}", self.log_path));
                 }
-            }
+            };
         });
 
         ctx.request_repaint();
@@ -358,35 +400,32 @@ fn handle_map(map: String, map_information: &JsonValue) {
         )
     };
 
-    Notification::new()
+    if Notification::new()
         .summary("Droppher")
         .body(format!("You are now on {}\n{}", map, map_info_str).as_str())
         .timeout(5000)
-        .show().expect("Failed to show notification");
-}
-
-#[cfg(not(windows))]
-fn get_lunar_client_directory_path() -> Option<String> {
-    match env::var("HOME") {
-        Ok(path) => Some(format!("{}/.lunarclient/logs/game", path)),
-        Err(_) => None
+        .show().is_err()
+    {
+        println!("failed to display notification");
     }
 }
 
-#[cfg(windows)]
-fn get_lunar_client_directory_path() -> Option<String> {
-    match env::var("HOMEPATH") {
-        Ok(homepath) => Some(format!("C:{}\\.lunarclient\\logs\\game", homepath)),
-        Err(_) => None
+fn verify_path(path: &Option<String>) -> Option<String> {
+    match path {
+        Some(path) => {
+            let file = File::open(path);
+
+            if file.is_ok() {
+                Some(path.to_string())
+            } else {
+                None
+            }
+        },
+        None => None
     }
 }
 
-fn get_lunar_client_log_path() -> Option<String> {
-    let directory_path = match get_lunar_client_directory_path() {
-        Some(path) => path,
-        None => return None
-    };
-
+fn get_latest_file_path(directory_path: String) -> Option<String> {
     let entries_result = read_dir(directory_path);
     let entries = match entries_result {
         Ok(dir) => dir,
@@ -426,6 +465,31 @@ fn get_lunar_client_log_path() -> Option<String> {
     }
 
     most_recently_modified_path
+}
+
+#[cfg(not(windows))]
+fn get_lunar_client_directory_path() -> Option<String> {
+    match env::var("HOME") {
+        Ok(path) => Some(format!("{}/.lunarclient/logs/game", path)),
+        Err(_) => None
+    }
+}
+
+#[cfg(windows)]
+fn get_lunar_client_directory_path() -> Option<String> {
+    match env::var("HOMEPATH") {
+        Ok(homepath) => Some(format!("C:{}\\.lunarclient\\logs\\game", homepath)),
+        Err(_) => None
+    }
+}
+
+fn get_lunar_client_log_path() -> Option<String> {
+    let directory_path = match get_lunar_client_directory_path() {
+        Some(path) => path,
+        None => return None
+    };
+
+    get_latest_file_path(directory_path)
 }
 
 #[cfg(not(windows))]

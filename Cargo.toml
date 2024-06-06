@@ -1,6 +1,6 @@
 [package]
 name = "droppher"
-version = "2.0.0"
+version = "2.2.0"
 edition = "2021"
 
 [dependencies]
@@ -15,3 +15,6 @@ eframe = "0.27.2"
 
 [target.'cfg(windows)'.dependencies]
 win_dialog = "1.0.0"
+
+[target.'cfg(not(windows))'.dependencies]
+tinyfiledialogs = "3.9.1"
