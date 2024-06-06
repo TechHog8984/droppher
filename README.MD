@@ -5,12 +5,12 @@ An assistant for Hypixel dropper
 Droppher provides live notifications displaying information about maps.
 
 ![](assets/image1.png)
+*On Windows the UI is not transparent :(
+<br>
 ![](assets/image2.png)
+<br>
 ![](assets/image3.png)
 ![](assets/image4.png)
-<br>
-![](assets/image5.png)
-![](assets/image6.png)
 
 ## Todo
 
@@ -42,10 +42,6 @@ The following platforms are supported:
 ```sh
 cargo build --release
 ```
-
-## Usage
-
-Run in terminal (sorry)
 
 ## What things mean
 
