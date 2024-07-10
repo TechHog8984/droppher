@@ -105,6 +105,7 @@ enum SupportedClient {
     None,
     Lunar,
     Badlion,
+    Vanilla,
     #[cfg(not(windows))]
     Custom(String)
 }
@@ -332,6 +333,7 @@ impl eframe::App for DroppherApp {
 
                         let lunar_radio = ui.radio_value(&mut self.client, SupportedClient::Lunar, "Lunar");
                         let badlion_radio = ui.radio_value(&mut self.client, SupportedClient::Badlion, "Badlion");
+                        let vanilla_radio = ui.radio_value(&mut self.client, SupportedClient::Vanilla, "Vanilla");
 
                         #[allow(unused_mut)]
                         let mut custom_file_changed = false;
@@ -347,11 +349,12 @@ impl eframe::App for DroppherApp {
                             };
                         };
 
-                        if lunar_radio.changed() || badlion_radio.changed() || custom_file_changed {
+                        if lunar_radio.changed() || badlion_radio.changed() || vanilla_radio.changed() || custom_file_changed {
                             let path_option = match &self.client {
                                 SupportedClient::None => None,
                                 SupportedClient::Lunar => verify_path(&get_lunar_client_log_path()),
                                 SupportedClient::Badlion => verify_path(&get_badlion_log_path()),
+                                SupportedClient::Vanilla => verify_path(&get_vanilla_log_path()),
                                 #[cfg(not(windows))]
                                 SupportedClient::Custom(path) => verify_path(&get_latest_file_path(path.to_string()))
                             };
@@ -505,5 +508,21 @@ fn get_badlion_log_path() -> Option<String> {
     match env::var("APPDATA") {
         Ok(appdata) => Some(format!("{}\\.minecraft\\logs\\blclient\\minecraft\\latest.log", appdata)),
         Err(_) => return None
+    }
+}
+
+#[cfg(not(windows))]
+fn get_vanilla_log_path() -> Option<String> {
+    match env::var("HOME") {
+        Ok(home) => Some(format!("{}/.minecraft/logs/latest.log", home)),
+        Err(_) => None
+    }
+}
+
+#[cfg(windows)]
+fn get_vanilla_log_path() -> Option<String> {
+    match env::var("APPDATA") {
+        Ok(appdata) => Some(format!("{}\\.minecraft\\logs\\latest.log", appdata)),
+        Err(_) => None
     }
 }
